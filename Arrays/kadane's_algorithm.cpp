@@ -13,20 +13,21 @@ class Solution{
     int maxSubarraySum(int arr[], int n){
         
         // Your code here
-        int max = 0;
-        int currs = 0;
-        int i, j;
+        int sum_till = 0, max_sum = INT_MIN ;
         
-        for(j = 0, i = 0; j < n;) {
-            currs += arr[j];
-            if(currs >= max) {
-                j++;
+        for(int i = 0; i < n; i++) {
+            sum_till += arr[i];
+            if(sum_till > max_sum) {
+                max_sum = sum_till;
             }
-            else {
-                
+            
+            if(sum_till < 0) {
+                sum_till = 0;
             }
+            
         }
         
+        return max_sum;
     }
 };
 
