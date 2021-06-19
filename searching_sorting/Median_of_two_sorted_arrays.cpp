@@ -17,54 +17,46 @@ class Solution
     int findMedian(int arr[], int n, int brr[], int m)
     {
         // code here
-        int i, j;
-        for(i = 0, j = 0; i < n;) {
-            if(arr[i] <= brr[j]) {
-                i++;
+        int i = 0, j = 0, k = n - 1, mid, result;
+    
+            while(i <= k && j < m) {
+                if(arr[i] < brr[j]) {
+                    i++;
+                }
+                else {
+                    swap(arr[k--], brr[j++]);
+                }
             }
-            else {
-                swap(arr[i], brr[j]);
-                i++;
-                j++;
-            }
-        }
-        for(int i = 0; i < n; i++) {
-            cout << arr[i];
-        }
-        for(int i = 0; i < m; i++) {
-            cout << brr[i];
-        }
-        int tot = n + m;
-        int mid, midean;
-        if(tot % 2 == 0) {
-            mid = (tot - 1) / 2;
+    
+            sort(arr, arr + n);
+            sort(brr, brr + m);
             
-            if(mid < (n - 1)) {
-                midean = (arr[mid] + arr[mid + 1]) / 2;
-            }
+            if((n + m) % 2 == 0) {
+                mid = (n + m - 1) / 2;
+                if(mid < n - 1) {
+                    result = (arr[mid] + arr[mid + 1]) / 2;
+                }
             
-            else if(mid > (n - 1)) {
-                midean = (brr[mid - n] + brr[(mid - n) + 1]) / 2;
-            }
+                else if(mid == n - 1) {
+                    result = (arr[mid] + brr[0]) / 2;
+                }
             
-            else {
-                midean = (arr[mid] + brr[0]) / 2;
+                else {
+                    result = (brr[mid - n] + brr[mid - n + 1]) / 2;
+                }
             }
-        }
         
-        else {
-            mid = (tot - 1) / 2;
-            
-            if(mid <= (n - 1)) {
-                midean = arr[mid];
-            }
-            
             else {
-                midean = brr[mid - (n)];
+                mid = (n + m - 1) / 2;
+                if(mid <= n - 1) {
+                    result = arr[mid];
+                }
+            
+                else {
+                result = brr[mid - n];
+                }
             }
-        }
-        
-        return midean;
+        return result;
     }
 };
 
