@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 
 using namespace std ;
 
@@ -45,6 +46,30 @@ void inorder(Node* root) {
     
 }
 
+void levelorder(Node* root) {
+
+    if(root == NULL) {
+        return;
+    }
+
+    queue<Node*> q;
+    q.push(root);
+
+    while(!q.empty()) {
+        struct Node* temp = q.front();
+        cout << temp -> data << "\n";
+        q.pop();
+        if(temp -> left != NULL) {
+            q.push(temp -> left);
+        }
+
+        if(temp -> right != NULL) {
+            q.push(temp -> right);
+        }
+
+    }
+}
+
 int main() {
 
     struct Node* root = new Node(1);
@@ -62,9 +87,11 @@ int main() {
     second -> left = fifth;
     second -> right = sixth;
 
-    preorder(root);
-    postorder(root);
-    inorder(root);
+    // preorder(root);
+    // postorder(root);
+    // inorder(root);
+
+    levelorder(root);
 
 
     return 0;
