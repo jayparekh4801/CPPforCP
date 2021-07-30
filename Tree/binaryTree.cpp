@@ -70,6 +70,17 @@ void levelorder(Node* root) {
     }
 }
 
+void insertnode(Node* root, Node* node) {
+    if(root == NULL) {
+        return;
+    }
+
+    queue <Node*> q;
+    q.push(root);
+
+    while(q.empty())
+}
+
 int main() {
 
     struct Node* root = new Node(1);
@@ -92,6 +103,9 @@ int main() {
     // inorder(root);
 
     levelorder(root);
+    struct Node* newNode = new Node(8);
+    insertnode(newNode);
+    inorder(root);
 
 
     return 0;
