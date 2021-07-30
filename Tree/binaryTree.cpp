@@ -78,7 +78,28 @@ void insertnode(Node* root, Node* node) {
     queue <Node*> q;
     q.push(root);
 
-    while(q.empty())
+    while(!q.empty()) {
+
+        struct Node* temp = q.front();
+        q.pop();
+
+        if(temp -> left == NULL) {
+            temp -> left = node;
+            break;
+        }
+        else {
+            q.push(temp -> left);
+        }
+
+        if(temp -> right == NULL) {
+            temp -> right = node;
+            break;
+        }
+
+        else {
+            q.push(temp -> right);
+        }
+    }
 }
 
 int main() {
@@ -104,8 +125,8 @@ int main() {
 
     levelorder(root);
     struct Node* newNode = new Node(8);
-    insertnode(newNode);
-    inorder(root);
+    insertnode(root, newNode);
+    levelorder(root);
 
 
     return 0;
