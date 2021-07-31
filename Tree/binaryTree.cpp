@@ -102,6 +102,72 @@ void insertnode(Node* root, Node* node) {
     }
 }
 
+void deletedeepestnode(Node* root, Node* node) {
+    queue<Node*> q;
+    q.push(root);
+
+    while(!q.empty()) {
+        struct Node* temp = q.front();
+        q.pop();
+
+        if(temp -> left) {
+            if(temp -> left == node) {
+                temp -> left = NULL;
+                delete(node);
+                return;
+            }
+            else {
+                q.push(temp -> left);
+            }
+        }
+
+        if(temp -> right) {
+            if(temp -> right == node) {
+                temp -> right = NULL;
+                delete(node);
+                return;
+            }
+            else {
+                q.push(temp -> right);
+            }
+        }
+        
+
+    }
+}
+
+void deletenode(Node* root, int key) {
+
+    if(root == NULL) {
+        return;
+    }
+
+    struct Node* temp;
+    struct Node* key_node = NULL;
+    queue<Node*> q;
+    q.push(root);
+
+    while (!q.empty()) {
+        temp = q.front();
+        q.pop();
+
+        if(temp -> data == key) {
+            key_node = temp;
+        }
+
+        if(temp -> left) {
+            q.push(temp -> left);
+        }
+
+        if(temp -> right) {
+            q.push(temp -> right);
+        }
+    }
+
+    key_node -> data = temp -> data;
+    deletedeepestnode(root, temp);
+}
+
 int main() {
 
     struct Node* root = new Node(1);
@@ -123,11 +189,11 @@ int main() {
     // postorder(root);
     // inorder(root);
 
-    levelorder(root);
     struct Node* newNode = new Node(8);
-    insertnode(root, newNode);
+    inorder(root);
     levelorder(root);
-
+    deletenode(root, 1);
+    levelorder(root);
 
     return 0;
 }
