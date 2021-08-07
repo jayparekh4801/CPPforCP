@@ -2,6 +2,8 @@
 
 using namespace std;
 
+#define MAX 1000
+
 void heapify(int a[], int n, int i) {
     int largest = i;
     int l = 2 * i + 1;
@@ -36,11 +38,31 @@ void printArray(int a[], int n) {
     }
 }
 
+void deleteRoot(int a[], int &n) {
+    a[0] = a[n -1];
+    n = n - 1;
+
+    heapify(a, n, 0);
+}
+
+void insertNode(int a[], int &n, int key) {
+    n = n + 1;
+    a[ n - 1] = key;
+    buildMaxHeap(a, n);
+}
+
 int main() {
-    int a[] = {10, 20, 4, 5, 9, 30};
-    int size = sizeof(a) / sizeof(a[0]);
+    int a[MAX] = {10, 5, 3, 2, 4};
+    // int size = sizeof(a) / sizeof(a[0]);
+    int size = 5;
     printArray(a, size);
-    buildMaxHeap(a, size);
+    // buildMaxHeap(a, size);
+    deleteRoot(a, size);
+    cout<<"\n";
     printArray(a, size);
+    insertNode(a, size, 20);
+    cout << "\n";
+    printArray(a, size + 1);
+    
     return 0;
 }
