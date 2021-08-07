@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <stack>
 
 using namespace std;
 
@@ -13,7 +14,7 @@ void BFS(vector<int> g[], int v) {
     bool visited[v + 1];
     int s = 1;
 
-    for(int i = 0; i < v; i++) {
+    for(int i = 0; i <= v; i++) {
         visited[i] = false;
     }
 
@@ -34,6 +35,32 @@ void BFS(vector<int> g[], int v) {
     }
 }
 
+void DFS(vector<int> g[], int v) {
+    int visited[v + 1];
+    int s = 1;
+    stack<int> st;
+    st.push(s);
+    
+    for(int i = 0; i <= v; i++) {
+        visited[i] = false;
+    }
+
+    visited[s] = true;
+
+    while (!st.empty()){
+        int temp = st.top();
+        cout << temp << "\t";
+        st.pop();
+
+        for(int i = 0; i < g[temp].size(); i++) {
+            if(visited[g[temp][i]] == false) {
+                visited[g[temp][i]] = true;
+                st.push(g[temp][i]);
+            }
+        }
+    }
+}
+
 int main() {
     int v = 6;
     vector<int> g[v + 1];
@@ -46,5 +73,7 @@ int main() {
     addEdge(g, 4, 6);
     addEdge(g, 5, 6);
     BFS(g, v);
+    cout << "\n";
+    DFS(g, v);
     return 0;
 }
