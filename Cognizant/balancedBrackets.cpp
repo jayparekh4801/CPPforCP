@@ -57,11 +57,11 @@ int main()
     bool result = checkBalancing(exp);
     if (result)
     {
-        cout << "BALANCED";
+        cout << "YES";
     }
     else
     {
-        cout << "NOT BALANCED";
+        cout << "NO";
     }
     return 0;
 }
