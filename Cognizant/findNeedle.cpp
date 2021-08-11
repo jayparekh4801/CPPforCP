@@ -17,8 +17,8 @@ int findIndex(string para, string needle, int pl, int nl) {
 int main() {
     string para, needle;
 
-    cin >> para;
-    cin >> needle;
+    getline(cin, para);
+    getline(cin, needle);
 
     int result = findIndex(para, needle, para.length(), needle.length());
     cout << result;
