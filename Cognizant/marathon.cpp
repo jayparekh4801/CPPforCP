@@ -7,12 +7,17 @@ using namespace std;
 bool bydesc(float a, float b) {
     return (b < a);
 }
-vector<float> findThree(vector<float> p, int n) {
+vector<float> findThree(vector<float> p, int n, float rm) {
     vector<float> result;
 
     sort(p.begin(), p.end(), bydesc);
-    for(int i = 3; i < p.size() && i < 6; i++) {
-        result.push_back(p[i]);
+    for(int i = 0; i < p.size(); i++) {
+        if(p[i] != rm) {
+            for(int j = i; j < p.size() && result.size() != 3; j++) {
+                result.push_back(p[i]);
+            }
+            break;
+        }
     }
     return result;
 }
@@ -20,13 +25,13 @@ vector<float> findThree(vector<float> p, int n) {
 int main() {
     vector<float> p;
     vector<float> result;
-
+    float rm = 42.195;
     string val;
     while(true) {
         cin >> val;
         if(val == "q") {
             if(!p.empty()) {
-                result = findThree(p, p.size());
+                result = findThree(p, p.size(), rm);
 
                 if(result.size() == 0) {
                     cout << 0;
