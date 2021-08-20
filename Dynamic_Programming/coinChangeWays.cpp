@@ -23,6 +23,7 @@ using namespace std;
 //     }
 // }
 
+// Dynamic Approach
 int findWays(int coins[], int numberOfCoins, int value){
     long long int t[numberOfCoins + 1][value + 1];
     for (int i = 0; i < numberOfCoins + 1; i++) {
@@ -53,8 +54,8 @@ int findWays(int coins[], int numberOfCoins, int value){
 
 int main()
 {
-    int a[] = {1, 2, 3};
-    int c = 5;
+    int a[] = {3, 5, 10};
+    int c = 20;
     int n = 3;
 
     int result = findWays(a, n, c);
