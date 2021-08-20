@@ -7,7 +7,7 @@ int noOfSubsetsWithGivenSum(int a[], int n, int s) {
 
     for(int i = 0; i < n + 1; i++) {
         for(int j = 0; j < s + 1; j++) {
-            if(n == 0) {
+            if(i == 0) {
                 t[i][j] = 0;
             }
 
