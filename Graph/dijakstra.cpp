@@ -29,7 +29,7 @@ vector<pair<int, int> > shortestPath(vector<pair <int, int> > graph[], int v, in
             int weight = graph[temp][i].second;
             if(dist[v].first > dist[temp].first + weight) {
                 dist[v].first = dist[temp].first + weight;
-                dist[v].second = temp;
+                dist[v].second = temp; 
                 p.push(make_pair(dist[v].first, v));
             }
 

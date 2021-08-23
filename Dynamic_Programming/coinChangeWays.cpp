@@ -55,7 +55,7 @@ int findWays(int coins[], int numberOfCoins, int value){
 int main()
 {
     int a[] = {1, 2};
-    int c = 5;
+    int c = 4;
     int n = 2;
 
     int result = findWays(a, n, c);
