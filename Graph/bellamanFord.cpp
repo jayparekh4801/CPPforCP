@@ -5,12 +5,13 @@ using namespace std;
 
 struct Edge {
     int src, dest, weight;
-}
+};
 
 struct Graph {
-    int v, int e;
+    int v;
+    int e;
     struct Edge *edge;
-}
+};
 
 Graph* createGraph(int v, int e) {
     struct Graph *graph = new Graph;
@@ -23,23 +24,37 @@ Graph* createGraph(int v, int e) {
 vector<pair<int, int> > bellamanFord(Graph* graph, int src) {
     vector<pair<int, int> > dist(graph -> v);
 
-    for(int i = 0;i < vector.size(); i++) {
+    for(int i = 0;i < dist.size(); i++) {
         dist[i].first = INT_MAX;
         dist[i].second = i;
     }
 
-    dist[src].first = dist[src].second = 0;
+    dist[src].first = 0;
+    dist[src].second = src;
 
-    for(int i = 0; i < graph -> v - 1; i++) {
+    for(int i = 0; i <= graph -> v - 1; i++) {
         for(int j = 0; j < graph -> e; j++) {
             int u = graph -> edge[j].src;
             int v = graph -> edge[j].dest;
             int w = graph -> edge[j].weight;
 
-            if(dist[u] > )
+            if(dist[u].first != INT_MAX && dist[u].first + w < dist[v].first) {
+                dist[v].first = dist[u].first + w;
+                dist[v].second = u;
+            }
         }
     }
 
+    for(int j = 0; j < graph -> e; j++) {
+        int u = graph -> edge[j].src;
+        int v = graph -> edge[j].dest;
+        int w = graph -> edge[j].weight;
+        if(dist[u].first != INT_MAX && dist[u].first + w < dist[v].first) {
+            dist[v].first = dist[u].first + w;
+            break;
+        }
+    }
+    return dist;
 }
 
 int main() {
@@ -80,6 +95,12 @@ int main() {
     graph -> edge[7].src = 4;
     graph -> edge[7].dest = 3;
     graph -> edge[7].weight = -3;
+
+    vector<pair<int , int> > result = bellamanFord(graph, 0);
+
+    for(int i = 0; i < result.size(); i++) {
+        cout << "weight " << result[i].first << " ancesstor " << result[i].second << "\n";
+    }
 
     return 0;
 }
