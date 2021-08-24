@@ -12,15 +12,17 @@ void addEdge(vector<int> graph[], int src, int dest) {
 void DFS(vector<int> graph[], int v, int src, bool vis[]) {
     stack<int> s;
     s.push(src);
+    vis[src] = true;
 
     while(!s.empty()) {
         int temp = s.top();
         cout << temp;
-        vis[temp] = true;
+        
         s.pop();
         for(int i = 0; i < graph[temp].size(); i++) {
             if(!vis[graph[temp][i]]) {
                 s.push(graph[temp][i]);
+                vis[graph[temp][i]] = true;
             }
         }
     }
@@ -36,7 +38,6 @@ void stronglyConnected(vector<int> graph[], int v) {
         if(!vis[i]) {
             DFS(graph, v, i, vis);
             cout << "\n";
-            ilands++;
         } 
     }
 }
@@ -48,6 +49,7 @@ int main() {
     addEdge(graph, 0, 1);
     addEdge(graph, 1, 2);
     addEdge(graph, 3, 4);
+   
 
     stronglyConnected(graph, v);
     return 0;
