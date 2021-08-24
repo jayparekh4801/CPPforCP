@@ -1,6 +1,5 @@
 #include <iostream>
 #include <stack>
-
 using namespace std;
 
 void DFS(int grid[5][5], int i, int j, int row, int col) {
