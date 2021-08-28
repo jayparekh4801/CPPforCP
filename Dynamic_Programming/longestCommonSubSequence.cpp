@@ -33,6 +33,7 @@ int LCS(string s1, string s2, int n, int m) {
         for(int j = 1; j < m + 1; j++) {
             if(s1[i - 1] == s2[j - 1]) {
                 t[i][j] = 1 + t[i - 1][j - 1];
+                cout << s2[j - 1];
             }
             else {
                 t[i][j] = max(t[i][j - 1] , t[i - 1][j]);
@@ -44,10 +45,10 @@ int LCS(string s1, string s2, int n, int m) {
 }
 
 int main() {
-    string s1 = "abcdgh";
-    string s2 = "abedfhr";
-    int n = 6;
-    int m = 7;
+    string s1 = "bbbaabaa";
+    string s2 = "aababbabb";
+    int n = 8;
+    int m = 9;
 
     int result = LCS(s1, s2, n, m);
     cout << result;
