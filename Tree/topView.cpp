@@ -13,7 +13,9 @@ struct Node {
 };
 
 void topViewOfTree(Node* root) {
-    
+    if(root == NULL) {
+        
+    }
 }
 
 

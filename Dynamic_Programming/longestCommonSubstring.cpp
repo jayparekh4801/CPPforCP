@@ -29,8 +29,8 @@ int LCSubstring(string s1, string s2, int n, int m) {
 }
 
 int main() {
-    string s1 = "abcdgh";
-    string s2 = "abedfhr";
+    string s1 = "cdabcdab";
+    string s2 = "abcd";
     int n = 6;
     int m = 7;
 
