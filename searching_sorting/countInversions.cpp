@@ -3,11 +3,12 @@
 using namespace std;
 
 
-void merge(int a[], int s, int m, int e) {
+int merge(int a[], int s, int m, int e) {
     int b[e - s + 1];
     int i = s;
     int j = m;
     int k = 0;
+    int result = 0;
     while(i < m && j <= e) {
         if(a[i] <= a[j]) {
             b[k] = a[i];
@@ -19,6 +20,7 @@ void merge(int a[], int s, int m, int e) {
             b[k] = a[j];
             j++;
             k++;
+            result += (m - i);
         }
     }
 
@@ -37,17 +39,18 @@ void merge(int a[], int s, int m, int e) {
     for(i = s, k = 0; i <= e; i++, k++) {
         a[i] = b[k];
     }
-    return;
+    return result;
 }
 
-void mergeSort(int a[], int s, int e) {
+int mergeSort(int a[], int s, int e) {
+    int result = 0;
     if(s < e) {
         int mid = (s + e) / 2;
-        mergeSort(a, s, mid);
-        mergeSort(a, mid + 1, e);
-        merge(a, s, mid + 1, e);
+        result += mergeSort(a, s, mid);
+        result += mergeSort(a, mid + 1, e);
+        result += merge(a, s, mid + 1, e);
     }   
-    return;
+    return result;
 }
 
 void printArray(int a[], int n) {
@@ -58,7 +61,8 @@ void printArray(int a[], int n) {
 
 int main() {
     int a[] = {5, 3, 2, 4, 1};
-    mergeSort(a, 0, 4);
-    printArray(a, 5);
+    int result = mergeSort(a, 0, 4);
+    // printArray(a, 7);
+    cout << result;
     return 0;
 }
