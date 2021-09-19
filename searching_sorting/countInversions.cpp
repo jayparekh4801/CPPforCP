@@ -9,6 +9,24 @@ int merge(int a[], int s, int m, int e) {
     int j = m;
     int k = 0;
     int result = 0;
+
+    while(i < m && j <= e) {
+        if(a[i] <= a[j]) {
+            i++;
+        }
+
+        else if(a[i] > 2 * a[j]) {
+            j++;
+            result += (m - i);
+        }
+        else {
+            i++;
+        }
+    }
+
+    i = s;
+    j = m;
+
     while(i < m && j <= e) {
         if(a[i] <= a[j]) {
             b[k] = a[i];
@@ -20,7 +38,7 @@ int merge(int a[], int s, int m, int e) {
             b[k] = a[j];
             j++;
             k++;
-            result += (m - i);
+            // result += (m - i);
         }
     }
 
@@ -60,8 +78,8 @@ void printArray(int a[], int n) {
 }
 
 int main() {
-    int a[] = {5, 3, 2, 4, 1};
-    int result = mergeSort(a, 0, 4);
+    int a[] = {40, 25, 19, 12, 9, 6, 2};
+    int result = mergeSort(a, 0, 6);
     // printArray(a, 7);
     cout << result;
     return 0;
