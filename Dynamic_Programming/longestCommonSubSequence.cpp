@@ -19,7 +19,7 @@ using namespace std;
 // }
 
 // Dynamic Approach
-int LCS(string s1, string s2, int n, int m) {
+int LCS(int s1[], int s2[], int n, int m) {
     int t[n + 1][m + 1];
     for(int i = 0; i < n + 1; i++) {
         for(int j = 0; j < m + 1; j++) {
@@ -33,7 +33,7 @@ int LCS(string s1, string s2, int n, int m) {
         for(int j = 1; j < m + 1; j++) {
             if(s1[i - 1] == s2[j - 1]) {
                 t[i][j] = 1 + t[i - 1][j - 1];
-                cout << s2[j - 1];
+                // cout << s2[j - 1];
             }
             else {
                 t[i][j] = max(t[i][j - 1] , t[i - 1][j]);
@@ -45,9 +45,9 @@ int LCS(string s1, string s2, int n, int m) {
 }
 
 int main() {
-    string s1 = "bbbaabaa";
-    string s2 = "aababbabb";
-    int n = 8;
+    int s1[] = {2, 10, 5, 1, 8, 6, 6, 6, 5};
+    int s2[] = {1, 2, 5, 5, 6, 6, 6, 8, 10};
+    int n = 9;
     int m = 9;
 
     int result = LCS(s1, s2, n, m);

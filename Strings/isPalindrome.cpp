@@ -20,7 +20,7 @@ static bool isPalindrome(string s) {
 }
 
 int main() {
-    string b = "aabbaa43";
+    string b = "aabbaa";
     bool result = isPalindrome(b);
     cout << result;
     return 0;

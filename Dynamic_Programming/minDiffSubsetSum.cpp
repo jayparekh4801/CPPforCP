@@ -56,8 +56,8 @@ int findMinDiff(int a[], int n) {
 }
 
 int main() {
-    int a[] = {1, 5, 11, 6};
-    int n = 4;
+    int a[] = {10000};
+    int n = 1;
 
     int result = findMinDiff(a, n);
     cout << result;

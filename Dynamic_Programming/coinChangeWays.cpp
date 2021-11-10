@@ -54,9 +54,9 @@ int findWays(int coins[], int numberOfCoins, int value){
 
 int main()
 {
-    int a[] = {1, 2};
-    int c = 4;
-    int n = 2;
+    int a[] = {18, 24, 23, 10, 16, 19, 2, 9, 5, 12, 17, 3, 28, 29, 4, 13, 15, 8};
+    int c = 458;
+    int n = 18;
 
     int result = findWays(a, n, c);
     cout << result;
