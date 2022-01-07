@@ -19,7 +19,7 @@ vector<int> shortestPath(vector<int> graph[], int src, int v) {
         int temp = q.front(); 
         q.pop();
         for(int i = 0; i < graph[temp].size(); i++) {
-            if(dist[graph[temp][i]] > dist[temp] + 1)) {
+            if(dist[graph[temp][i]] > dist[temp] + 1) {
                 dist[graph[temp][i]] = dist[temp] + 1;
                 q.push(graph[temp][i]);
             }
