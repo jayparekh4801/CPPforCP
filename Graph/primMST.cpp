@@ -16,7 +16,7 @@ void primsMST(vector<pair<int, int> >graph[], int v, int src, int val[], bool ms
         mst[mini] = true;
 
         for(int i = 0; i < graph[mini].size(); i++) {
-            if(!mst[graph[mini][i].first] && val[graph[mini][i].first] > graph[mini][i].second) {
+            if(mst[graph[mini][i].first] == false && val[graph[mini][i].first] > graph[mini][i].second) {
                 par[graph[mini][i].first] = mini;
                 pq.push(make_pair(val[graph[mini][i].first], graph[mini][i].first));
                 val[graph[mini][i].first] = graph[mini][i].second;
