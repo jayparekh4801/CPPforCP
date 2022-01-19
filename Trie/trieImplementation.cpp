@@ -52,12 +52,29 @@ class Trie {
 
         // search method
         bool search(string word) {
+            Node* node = root;
 
+            for(int i = 0; i < word.length(); i++) {
+                if(!node -> containsKey(word[i])) {
+                    return false;
+                }
+                node = node -> get(word[i]);
+            }
+
+            return node -> flag
         }
 
         // starts with
         bool startsWith(sting word) {
+            Node* node = root;
 
+            for(int i = 0; i < word.length(); i++) {
+                if(!node -> containsKey(word[i])) {
+                    return false;
+                }
+                node = node -> get(word[i]);
+            }
+            return true;
         }
 }
 
