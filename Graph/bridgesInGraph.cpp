@@ -28,12 +28,12 @@ int main() {
     cin >> n;
     cin >> e;
     vector<int> graph[n + 1];
-    bool vis[n + 1];
-    int tin[n + 1];
-    int low[n + 1];
+    bool vis[n];
+    int tin[n];
+    int low[n];
     int timer = 0;
 
-    for(int i = 0; i < n + 1; i++) {
+    for(int i = 0; i < n; i++) {
         tin[i] = -1;
         low[i] = -1;
         vis[i] = false;
@@ -47,7 +47,7 @@ int main() {
         graph[u].push_back(v);
         graph[v].push_back(u);
     }
-    for(int i = 1; i < n + 1; i++) {
+    for(int i = 0; i < n; i++) {
         if(!vis[i]) {
             printBridges(graph, -1, low, tin, vis, timer, i);
         }
