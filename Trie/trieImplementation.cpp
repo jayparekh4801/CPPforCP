@@ -1,5 +1,7 @@
 #include <iostream>
 
+using namespace std;
+
 struct Node {
     Node* links[26];
     bool flag = false;
@@ -24,7 +26,7 @@ struct Node {
     void setEnd() {
         flag = true;
     }
-}
+};
 
 class Trie {
     private :
@@ -61,11 +63,11 @@ class Trie {
                 node = node -> get(word[i]);
             }
 
-            return node -> flag
+            return node -> flag;
         }
 
         // starts with
-        bool startsWith(sting word) {
+        bool startsWith(string word) {
             Node* node = root;
 
             for(int i = 0; i < word.length(); i++) {
@@ -76,9 +78,14 @@ class Trie {
             }
             return true;
         }
-}
+};
 
 int main() {
+    Trie t;
+    t.insert("jay");
+    string temp = "";
+    temp += 'j';
+    cout << t.startsWith(temp);
     
     return 0;
 }
