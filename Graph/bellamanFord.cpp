@@ -3,103 +3,54 @@
 
 using namespace std;
 
-struct Edge {
-    int src, dest, weight;
-};
+vector<int> bellamanFord(int v, vector<vector<int> > graph, int src) {
+    vector<int> dis(v, INT_MAX);
+    dis[src] = 0;
+    int edges = graph.size();
 
-struct Graph {
-    int v;
-    int e;
-    struct Edge *edge;
-};
-
-Graph* createGraph(int v, int e) {
-    struct Graph *graph = new Graph;
-    graph -> v = v;
-    graph -> e = e;
-    graph -> edge = new Edge[e];
-    return graph;
-}
-
-vector<pair<int, int> > bellamanFord(Graph* graph, int src) {
-    vector<pair<int, int> > dist(graph -> v);
-
-    for(int i = 0;i < dist.size(); i++) {
-        dist[i].first = INT_MAX;
-        dist[i].second = i;
-    }
-
-    dist[src].first = 0;
-    dist[src].second = src;
-
-    for(int i = 0; i <= graph -> v - 1; i++) {
-        for(int j = 0; j < graph -> e; j++) {
-            int u = graph -> edge[j].src;
-            int v = graph -> edge[j].dest;
-            int w = graph -> edge[j].weight;
-
-            if(dist[u].first != INT_MAX && dist[u].first + w < dist[v].first) {
-                dist[v].first = dist[u].first + w;
-                dist[v].second = u;
+    for(int i = 0; i < v - 1; i++) {
+        for(int j = 0; j < edges; j++) {
+            if(dis[graph[j][0]] + graph[j][2] < dis[graph[j][1]]) {
+                dis[graph[j][1]] = dis[graph[j][0]] + graph[j][2];
             }
         }
     }
 
-    for(int j = 0; j < graph -> e; j++) {
-        int u = graph -> edge[j].src;
-        int v = graph -> edge[j].dest;
-        int w = graph -> edge[j].weight;
-        if(dist[u].first != INT_MAX && dist[u].first + w < dist[v].first) {
-            dist[v].first = dist[u].first + w;
+    for(int j = 0; j < edges; j++) {
+        if(dis[graph[j][0]] + graph[j][2] < dis[graph[j][1]]) {
+            dis.clear();
+            cout << "Negative Cycle";
             break;
         }
     }
-    return dist;
+
+    return dis;
+
 }
 
 int main() {
+    int v, e;
+    int src;
+    cin >> v;
+    cin >> e;
+    cin >> src;
 
-    int v = 5;
-    int e = 8;
+    vector<vector<int> > graph(e);
 
-    struct Graph *graph = createGraph(v, e);
+    for(int i = 0; i < e; i++) {
+        int u, v, w;
+        cin >> u;
+        cin >> v;
+        cin >> w;
+        graph[i].push_back(u);
+        graph[i].push_back(v);
+        graph[i].push_back(w);
+    }
 
-    graph -> edge[0].src = 0;
-    graph -> edge[0].dest = 1;
-    graph -> edge[0].weight = -1;
-
-    graph -> edge[1].src = 0;
-    graph -> edge[1].dest = 2;
-    graph -> edge[1].weight = 4;
-
-    graph -> edge[2].src = 1;
-    graph -> edge[2].dest = 2;
-    graph -> edge[2].weight = 3;
-
-    graph -> edge[3].src = 1;
-    graph -> edge[3].dest = 3;
-    graph -> edge[3].weight = 2;
-
-    graph -> edge[4].src = 1;
-    graph -> edge[4].dest = 4;
-    graph -> edge[4].weight = 2;
-
-    graph -> edge[5].src = 3;
-    graph -> edge[5].dest = 2;
-    graph -> edge[5].weight = 5;
-
-    graph -> edge[6].src = 3;
-    graph -> edge[6].dest = 1;
-    graph -> edge[6].weight = 1;
-
-    graph -> edge[7].src = 4;
-    graph -> edge[7].dest = 3;
-    graph -> edge[7].weight = -3;
-
-    vector<pair<int , int> > result = bellamanFord(graph, 0);
+    vector<int> result = bellamanFord(v, graph, src);
 
     for(int i = 0; i < result.size(); i++) {
-        cout << "weight " << result[i].first << " ancesstor " << result[i].second << "\n";
+        cout << result[i] << "\t";
     }
 
     return 0;
