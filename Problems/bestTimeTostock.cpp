@@ -2,10 +2,9 @@
 
 using namespace std;
 
-int stock(int a[], int n) {
+int stock(int prices[], int n) {
     int mi = INT_MAX;
     int result = 0;
-    int n = prices.size();
     for(int i = 0; i < n; i++) {
         if(prices[i] <= mi) {
             mi = prices[i];
@@ -24,7 +23,7 @@ int main() {
     cin >> n;
     int a[n];
 
-    for(int i = 0 ; i < nl i++) {
+    for(int i = 0 ; i < n; i++) {
         cin >> a[i];
     }
     int result = stock(a, n);
