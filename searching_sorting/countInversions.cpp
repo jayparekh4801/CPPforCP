@@ -18,7 +18,7 @@ int merge(int a[], int s, int m, int e) {
         }
 
         else {
-            result = m - i;
+            result += m - i;
             b[k] = a[j];
             j++;
             k++;
