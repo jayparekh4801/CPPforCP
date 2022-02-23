@@ -47,11 +47,12 @@ vector<vector<int> > Sum3(vector<int> A) {
 int main() {
     vector<int> a;
     vector<vector<int> > result;
-    a.push_back(2147483647);
-    a.push_back(-2147483648);
-    a.push_back(-2147483648);
+    a.push_back(-1);
     a.push_back(0);
     a.push_back(1);
+    a.push_back(2);
+    a.push_back(-1);
+    a.push_back(-4);
 
     result = Sum3(a);
 
