@@ -3,44 +3,34 @@
 
 using namespace std;
 
-void allPermutations(int a[], vector<int> ds, vector<vector<int> >& result, int fre[], int n) {
-    if(ds.size() == n) {
-        result.push_back(ds);
+void allPermutations(int ind, vector<vector<int> >& result, vector<int> a, int n) {
+    if(ind == n - 1) {
+        result.push_back(a);
+        return;
     }
 
-    for(int i = 0; i < n; i++) {
-        if(fre[i] == 0) {
-            fre[i] = 1;
-            ds.push_back(a[i]);
-            allPermutations(a, ds, result, fre, n);
-            ds.pop_back();
-            fre[i] = 0;
-        }
+    for(int i = ind; i < n; i++) {
+        swap(a[ind], a[i]);
+        allPermutations(ind + 1, result, a, n);
+        swap(a[ind], a[i]);
     }
-
 }
 
-vector<vector<int> > permutaions(int a[], int n) {
-    int fre[n];
-
-    for(int i = 0; i < n; i++) {
-        fre[i] = 0;
-    }
-
+vector<vector<int> > permutaions(vector<int> a, int n) {
     vector<vector<int> > result;
-    vector<int> ds;
-
-    allPermutations(a, ds, result, fre, n);
+    allPermutations(0, result, a, n);
     return result;
 }
 
 int main() {
     int n;
     cin >> n;
-    int a[n];
+    vector<int> a;
 
     for(int i = 0; i < n; i++) {
-        cin >> a[i];
+        int temp;
+        cin >> temp;
+        a.push_back(temp);
     }
 
     vector<vector<int> > result = permutaions(a, n);
