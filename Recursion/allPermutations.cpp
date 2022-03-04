@@ -34,12 +34,12 @@ int main() {
     }
 
     vector<vector<int> > result = permutaions(a, n);
-
+    sort(result.begin(), result.end());
     for(int i = 0; i < result.size(); i++) {
         for(int j = 0; j < result[i].size(); j++) {
             cout << result[i][j] << " ";
         }
-
+        count++;
         cout << "\n";
     }
 
