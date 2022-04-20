@@ -17,7 +17,7 @@ int median(int a[], int b[], int n1, int n2) {
     while(l <= h) {
         int mid = (l + h) / 2;
         int l1 = a[mid];
-        int l2 = b[ellh - mid - 2);
+        int l2 = b[ellh - mid - 2];
         int r1 = a[mid + 1];
         int r2 = b[ellh - mid - 1];
 
@@ -30,8 +30,15 @@ int median(int a[], int b[], int n1, int n2) {
             }
         }
 
-        else if()
+        else if(l1 > r2) {
+            h = mid - 1;
+        }
+
+        else if(l2 > r1) {
+            l = mid + 1;
+        }
     } 
+
 }
 
 int main() {

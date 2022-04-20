@@ -3,7 +3,7 @@
 using namespace std;
 
 int parent[10000];
-int reank[10000];
+int rank[10000];
 
 void makeSet(int n) {
     for(int i = 0; i < n; i++) {
