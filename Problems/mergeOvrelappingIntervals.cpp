@@ -4,25 +4,25 @@
 using namespace std;
 
 vector<vector<int> > mergeOverlapingIntervals(vector<vector<int> > a, int n) {
-    sort(a.begin(), a.end());
     vector<vector<int> > result;
-    vector<int> temp;
-    temp.push_back(a[0][0]);
-    temp.push_back(a[0][1]);
-    result.push_back(temp);
-    int index = 0;
-    for(int i = 1; i < a.size(); i++) {
-        if(a[i][0] <= result[index][1]) {
-            result[index][1] = max(result[index][1], a[i][1]);
-        }
-        else {
-            vector<int> temp1;
-            temp1.push_back(a[i][0]);
-            temp1.push_back(a[i][1]);
-            result.push_back(temp1);
-        }
+    if(a.size() == 0) {
+        return result;
     }
 
+    sort(a.begin(), a.end());
+
+    vector<int> temp = a[0];
+
+    for(vector<int> it : a) {
+        if(it[0] <= temp[1]) {
+            temp[1] = max(temp[1], it[1]);
+        }
+        else {
+            result.push_back(temp);
+            temp = it;
+        }
+    }
+    result.push_back(temp);
     return result;
 }
 
