@@ -1,60 +1,45 @@
-// { Driver Code Starts
-// #include<bits/stdc++.h>
 #include <iostream>
+
 using namespace std;
 
+void sort012(int a[], int n) {
+    int low = 0;
+    int mid = 0;
+    int high = n - 1;
 
+    while(mid <= high) {
+        if(a[mid] == 0) {
+            swap(a[mid], a[low]);
+            mid++;
+            low++;
+        }
 
- // } Driver Code Ends
-class Solution
-{
-    public:
-    void sort012(int a[], int n)
-    {
-        // coode here 
-        int eles[3] = {0};
-        int er = 0;
-        for(int i = 0; i < n; i++) {
-            eles[a[i]]++;
+        else if(a[mid] == 1) {
+            mid++;
         }
-        
-        for(int j = 0; j < 3; j++) {
-            for(int k = 0; k < eles[j]; k++) {
-                a[er] = j;
-                er++;
-            }
+
+        else {
+            swap(a[mid], a[high]);
+            high--;
         }
-        
     }
-    
-};
-
-// { Driver Code Starts.
-int main() {
-
-    int t;
-    cin >> t;
-
-    while(t--){
-        int n;
-        cin >>n;
-        int a[n];
-        for(int i=0;i<n;i++){
-            cin >> a[i];
-        }
-
-        Solution ob;
-        ob.sort012(a, n);
-
-        for(int i=0;i<n;i++){
-            cout << a[i]  << " ";
-        }
-
-        cout << endl;
-        
-        
-    }
-    return 0;
 }
 
-  // } Driver Code Ends
+int main() {
+    int n;
+    cin >> n;
+
+    int a[n];
+
+    for(int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+
+    sort012(a, n);
+
+    for(int i = 0; i < n; i++) {
+        cout << a[i];
+    }
+
+    return 0;
+}
