@@ -5,8 +5,8 @@ using namespace std;
 
 vector<int>  majorityElement(int a[], int n) {
     vector<int> result;
-    int result1 = -1;
-    int result2 = -1;
+    int result1 = INT_MIN;
+    int result2 = INT_MIN;
     int count1 = 0;
     int count2 = 0;
 
@@ -34,9 +34,22 @@ vector<int>  majorityElement(int a[], int n) {
         }
     }
 
+    count1 = count2 = 0;
+        
+        for(int i = 0; i < n; i++) {
+            if(a[i] == result1) count1++;
+            if(a[i] == result2) count2++;
+        }
 
-    result.push_back(result1);
-    result.push_back(result2);
+
+    if(count1 > n / 3) {
+            result.push_back(result1);    
+        }
+        
+    if( count2 > n / 3) {
+        result.push_back(result2);            
+    }
+    
 
     return result;
 }

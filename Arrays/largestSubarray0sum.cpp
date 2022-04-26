@@ -15,12 +15,14 @@ int largestSubarray(int a[], int n) {
             result = max(result, i + 1);
         }
 
-        else if(m.find(s) == m.end()) {
-            m.insert(make_pair(s, i));
-        }
         else {
-            int cl = i - m[s];
-            result = max(cl, result);
+            if(m.find(s) == m.end()) {
+                m.insert(make_pair(s, i));
+            }
+            else {
+                int cl = i - m[s];
+                result = max(cl, result);
+            }
         }
     }
 
