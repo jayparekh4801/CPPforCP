@@ -29,6 +29,7 @@ int findMaxValue(int values[], int weights[], int n, int w) {
         else {
             int remain = w - currw;
             ans = ans + (remain * ((double)items[i].first / (double)items[i].second));
+            break;
         }
     }
 
